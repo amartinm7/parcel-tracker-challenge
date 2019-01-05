@@ -8,17 +8,18 @@ public class Shipment {
 
     private String reference;
     private HashSet<Parcel> parcels;
-    private HashSet<Tracking> tracking;
+    private Tracking tracking;
 
     public Shipment(String reference,
                     Collection<Parcel> parcels,
-                    Collection<Tracking> tracking ){
+                    Tracking tracking ){
         this.reference = reference;
         this.parcels = new LinkedHashSet<>(parcels);
-        this.tracking = new LinkedHashSet<>(tracking);
+        this.tracking = tracking;
     }
 
     public Shipment() {
+        super();
     }
 
     public Long getTotalWeight(){
@@ -41,11 +42,11 @@ public class Shipment {
         this.parcels = parcels;
     }
 
-    public HashSet<Tracking> getTracking() {
+    public Tracking getTracking() {
         return tracking;
     }
 
-    public void setTracking(HashSet<Tracking> tracking) {
+    public void setTracking(Tracking tracking) {
         this.tracking = tracking;
     }
 
