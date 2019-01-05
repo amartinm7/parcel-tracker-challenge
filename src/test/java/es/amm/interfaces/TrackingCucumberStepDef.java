@@ -38,6 +38,7 @@ public class TrackingCucumberStepDef extends SpringBootBaseIntegrationTest {
 
     @Given("^the provided shipment$")
     public void the_provided_shipment() throws IOException {
+        // POST SHIPMENT
         shipment = getShipment();
         assertThat(!StringUtils.isEmpty(shipment.getReference())).isTrue();
         tracking = new Tracking();
@@ -45,6 +46,7 @@ public class TrackingCucumberStepDef extends SpringBootBaseIntegrationTest {
 
     @When("^shipment reference should be equal to tracking (\\w+)$")
     public void the_shipment_reference_should_be_equal_to_tracking_reference(final String trackingReference) {
+        // PUT TRACKING
         tracking.setReference(trackingReference);
         assertThat(shipment.getReference().equals(tracking.getReference()));
     }
@@ -93,9 +95,7 @@ public class TrackingCucumberStepDef extends SpringBootBaseIntegrationTest {
 
     @Then("^dispatch an application event reference (\\w+) and status (\\w+)$")
     public void dispatch_an_application_event(final String reference, final String status) {
-        event = new Event();
-        event.setReference(reference);
-        event.setStatus(status);
+        event = new Event.Builder().setReference(reference).setStatus(Tracking.STATUS_TRACKING.valueOf(status)).build();
         assertThat(event == event).isTrue();
     }
 
@@ -104,6 +104,5 @@ public class TrackingCucumberStepDef extends SpringBootBaseIntegrationTest {
         assertThat(event == event).isTrue();
         logger.info(event.toString());
     }
-
 
 }
