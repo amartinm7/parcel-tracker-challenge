@@ -32,7 +32,7 @@ public class ShipmentCommandAdapter implements ShipmentCommandPort {
     @Override
     public Optional<Event> pushTracking(Tracking tracking){
 
-        Optional<Shipment> optionalShipment = repositoryPort.find(tracking.getReference());
+        final Optional<Shipment> optionalShipment = repositoryPort.find(tracking.getReference());
 
         final Optional<Event> event = ResolveTrackingStatus.getValidations().stream()
                 .map(resolveTrackingStatus -> resolveTrackingStatus.validate(optionalShipment,tracking))
