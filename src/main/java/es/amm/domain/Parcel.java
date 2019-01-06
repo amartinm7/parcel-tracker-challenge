@@ -83,7 +83,6 @@ public class Parcel {
         }
     }
 
-
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Parcel{");
@@ -93,5 +92,27 @@ public class Parcel {
         sb.append(", height=").append(height);
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Parcel)) return false;
+
+        Parcel parcel = (Parcel) o;
+
+        if (!getWidth().equals(parcel.getWidth())) return false;
+        if (!getLenght().equals(parcel.getLenght())) return false;
+        if (!getWeight().equals(parcel.getWeight())) return false;
+        return getHeight().equals(parcel.getHeight());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getWidth().hashCode();
+        result = 31 * result + getLenght().hashCode();
+        result = 31 * result + getWeight().hashCode();
+        result = 31 * result + getHeight().hashCode();
+        return result;
     }
 }
