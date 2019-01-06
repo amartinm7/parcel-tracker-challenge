@@ -4,7 +4,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import es.amm.domain.Event;
+import es.amm.intrastructure.Event;
 import es.amm.domain.Shipment;
 import es.amm.domain.Tracking;
 import org.junit.Ignore;

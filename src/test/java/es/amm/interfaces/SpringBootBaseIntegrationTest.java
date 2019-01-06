@@ -1,7 +1,7 @@
 package es.amm.interfaces;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import es.amm.domain.Event;
+import es.amm.intrastructure.Event;
 import es.amm.domain.Shipment;
 import es.amm.domain.Tracking;
 import es.amm.intrastructure.HttpParams;
@@ -17,9 +17,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 
 @RunWith(SpringRunner.class)
