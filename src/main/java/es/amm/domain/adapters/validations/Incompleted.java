@@ -7,7 +7,7 @@ import es.amm.intrastructure.Event;
 
 import java.util.Optional;
 
-public class Incompleted implements ResolveTrackingStatus {
+public class Incompleted implements ResolveStatusTracking {
 
     @Override
     public Optional<Event> validate(Optional<Shipment> optionalShipment, Tracking tracking) {

@@ -1,7 +1,7 @@
 package es.amm.domain.adapters;
 
 
-import es.amm.domain.adapters.validations.ResolveTrackingStatus;
+import es.amm.domain.adapters.validations.ResolveStatusTracking;
 import es.amm.intrastructure.Event;
 import es.amm.domain.Shipment;
 import es.amm.domain.Tracking;
@@ -34,7 +34,7 @@ public class ShipmentCommandAdapter implements ShipmentCommandPort {
 
         final Optional<Shipment> optionalShipment = repositoryPort.find(tracking.getReference());
 
-        final Optional<Event> event = ResolveTrackingStatus.getValidations().stream()
+        final Optional<Event> event = ResolveStatusTracking.getValidations().stream()
                 .map(resolveTrackingStatus -> resolveTrackingStatus.validate(optionalShipment,tracking))
                 .filter(optionalEvent -> optionalEvent.isPresent())
                 .findFirst().get();

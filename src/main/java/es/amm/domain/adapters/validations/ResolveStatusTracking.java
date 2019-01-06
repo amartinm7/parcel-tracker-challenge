@@ -9,12 +9,12 @@ import java.util.Collection;
 import java.util.Optional;
 
 @FunctionalInterface
-public interface ResolveTrackingStatus {
+public interface ResolveStatusTracking {
 
     Optional<Event> validate (final Optional<Shipment> optionalShipment, final Tracking tracking);
 
-    static Collection<ResolveTrackingStatus> getValidations (){
-        Collection<ResolveTrackingStatus> collection = new ArrayList<>();
+    static Collection<ResolveStatusTracking> getValidations (){
+        Collection<ResolveStatusTracking> collection = new ArrayList<>();
         collection.add(new ConcilliationRequest());
         collection.add(new Incompleted());
         collection.add(new IncompletedByEmptyTrackingFields());

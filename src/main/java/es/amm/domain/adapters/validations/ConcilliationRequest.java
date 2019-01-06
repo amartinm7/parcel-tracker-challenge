@@ -6,7 +6,7 @@ import es.amm.intrastructure.Event;
 
 import java.util.Optional;
 
-public class ConcilliationRequest implements ResolveTrackingStatus {
+public class ConcilliationRequest implements ResolveStatusTracking {
 
     @Override
     public Optional<Event> validate (Optional<Shipment> optionalShipment, Tracking tracking) {
