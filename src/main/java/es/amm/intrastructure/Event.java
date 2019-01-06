@@ -1,7 +1,8 @@
-package es.amm.domain;
+package es.amm.intrastructure;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import es.amm.domain.Tracking;
 
 @JsonDeserialize(builder = Event.Builder.class)
 public class Event {
