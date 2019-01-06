@@ -12,7 +12,7 @@ public class Tracking {
     }
 
     public Tracking() {
-
+        super();
     }
 
     public STATUS_TRACKING getStatus() {
@@ -56,5 +56,27 @@ public class Tracking {
         sb.append(", reference='").append(reference).append('\'');
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Tracking)) return false;
+
+        Tracking tracking = (Tracking) o;
+
+        if (getStatus() != tracking.getStatus()) return false;
+        if (!getParcels().equals(tracking.getParcels())) return false;
+        if (!getWeight().equals(tracking.getWeight())) return false;
+        return getReference().equals(tracking.getReference());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getStatus().hashCode();
+        result = 31 * result + getParcels().hashCode();
+        result = 31 * result + getWeight().hashCode();
+        result = 31 * result + getReference().hashCode();
+        return result;
     }
 }
