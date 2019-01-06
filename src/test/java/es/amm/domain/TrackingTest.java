@@ -16,12 +16,12 @@ public class TrackingTest {
     public void createTrackingOK() throws Exception{
         final ObjectMapper objectMapper = new ObjectMapper();
         final Tracking tracking = objectMapper.readValue(this.getClass().getResourceAsStream("./tracking.json"), Tracking.class);
+        Assert.assertNotNull(tracking);
         logger.info(objectMapper.writeValueAsString(tracking));
-        Assert.assertTrue(tracking!=null);
     }
 
     @Test
-    public void createTrackingWrongStatus() throws Exception{
+    public void createTrackingWrongStatus(){
         final ObjectMapper objectMapper = new ObjectMapper();
         assertThrows(com.fasterxml.jackson.databind.exc.InvalidFormatException.class,
                 () -> objectMapper.readValue(this.getClass().getResourceAsStream("./trackingWrongStatus.json"), Tracking.class));

@@ -14,7 +14,7 @@ public class ShipmentTest {
     public void createTrackingOK() throws Exception{
         final ObjectMapper objectMapper = new ObjectMapper();
         final Shipment shipment = objectMapper.readValue(this.getClass().getResourceAsStream("./shipment.json"), Shipment.class);
-        logger.info(objectMapper.writeValueAsString(shipment));
         Assert.assertNotNull(shipment);
+        logger.info(objectMapper.writeValueAsString(shipment));
     }
 }

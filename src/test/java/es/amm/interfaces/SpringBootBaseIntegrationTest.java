@@ -12,9 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.net.URI;
@@ -53,7 +51,7 @@ public abstract class SpringBootBaseIntegrationTest {
     public Shipment postShipment()throws Exception {
         // given shipment
         final String jsonShipment = getShipmentAsString();
-        final HttpEntity<String> request = RestTemplateHelper.getHttpEntity (jsonShipment);
+        final HttpEntity<String> request = getHttpEntity (jsonShipment);
         final URI uri = new URL(registerEndPoint()).toURI();
         return this.restTemplate.postForObject(uri, request, Shipment.class);
     }
@@ -61,7 +59,7 @@ public abstract class SpringBootBaseIntegrationTest {
     public Event putTracking(Tracking tracking) throws Exception {
         final ObjectMapper objectMapper = new ObjectMapper();
         final String jsonTracking = objectMapper.writeValueAsString(tracking);
-        final HttpEntity<String> request = RestTemplateHelper.getHttpEntity (jsonTracking);
+        final HttpEntity<String> request = getHttpEntity (jsonTracking);
         final URI uri = new URL(pushEndPoint()).toURI();
         final ResponseEntity<Event> response = restTemplate.exchange(uri, HttpMethod.PUT, request, Event.class);
         return response.getBody();
@@ -70,5 +68,13 @@ public abstract class SpringBootBaseIntegrationTest {
     void clean() {
         restTemplate.delete(registerEndPoint());
         restTemplate.delete(pushEndPoint());
+    }
+
+    public static HttpEntity<String> getHttpEntity (String json){
+        final HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        final HttpEntity<String> request = new HttpEntity<>(json, headers);
+        return request;
     }
 }
