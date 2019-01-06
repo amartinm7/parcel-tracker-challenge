@@ -27,8 +27,8 @@ public class Shipment {
     }
 
     @JsonIgnore
-    public int getTotalParcels(){
-        return parcels.size();
+    public Long getTotalParcels(){
+        return Long.valueOf(parcels.size());
     }
 
     public String getReference() {
