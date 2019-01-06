@@ -47,8 +47,30 @@ Once you have the dockerized app is really easy bring it to the cloud. You look 
 
 ## ![swagger](./_media/icons/swagger.png) Swagger
 You can see the swagger documentation in the following url:
-- http://localhost:8080/swagger-ui.html
+- http://localhost:8085/swagger-ui.html
 
+## Test code covarage using Jacoco
+To see the report with the code coverage for the testing, simply open the report: 
+- build/reports/jacoco/test/html/index.html
+
+## Code Quality coverage using checkstyle and findbugs
+To see the reports simply open the report: 
+- build/reports/checkstyle/main.html
+- build/reports/checkstyle/test.html
+
+You can execute the report on demand:
+```bash
+./gradlew check
+```
+
+## Cucumber test report
+To see the reports simply open the report: 
+- target/cucumber/index.html
+
+## actuator for checking the availability of the system
+Under the next urls you can see how is the system running:
+* http://localhost:8085/actuator/health
+* http://localhost:8085/actuator/info
 
 
 ## Some useful Tips
