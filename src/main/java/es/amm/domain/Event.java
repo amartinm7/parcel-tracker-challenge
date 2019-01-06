@@ -3,6 +3,8 @@ package es.amm.domain;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
+import java.util.Objects;
+
 @JsonDeserialize(builder = Event.Builder.class)
 public class Event {
 
@@ -59,5 +61,23 @@ public class Event {
         sb.append(", status='").append(status).append('\'');
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Event)) return false;
+
+        Event event = (Event) o;
+
+        if (!getReference().equals(event.getReference())) return false;
+        return getStatus() == event.getStatus();
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getReference().hashCode();
+        result = 31 * result + getStatus().hashCode();
+        return result;
     }
 }
