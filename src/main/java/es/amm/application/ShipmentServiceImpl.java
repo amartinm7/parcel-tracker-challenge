@@ -3,6 +3,7 @@ package es.amm.application;
 import es.amm.domain.Shipment;
 import es.amm.domain.Tracking;
 import es.amm.domain.ports.ShipmentCommandPort;
+import es.amm.intrastructure.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,7 @@ public class ShipmentServiceImpl implements ShipmentService{
     }
 
     @Override
-    public Optional<Tracking> addTracking (Tracking tracking) {
-        return Optional.empty();
+    public Optional<Event> pushTracking(Tracking tracking) {
+        return shipmentCommandPort.pushTracking(tracking);
     }
 }

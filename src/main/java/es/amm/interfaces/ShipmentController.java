@@ -28,7 +28,7 @@ public class ShipmentController {
     @PostMapping(value = HttpParams.URI_REGISTER,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Shipment> register(@RequestBody Shipment shipment) {
-        logger.info("asking for register shipment {}", shipment);
+        logger.info("asking for register a shipment {}", shipment);
         return shipmentService.save(shipment)
                 .map(_shipment -> new ResponseEntity(_shipment, HttpStatus.OK ))
                 .orElse(new ResponseEntity(shipment, HttpStatus.BAD_REQUEST));
@@ -38,8 +38,8 @@ public class ShipmentController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Event> push(
             @RequestBody Tracking tracking) {
-        logger.info("asking for tracking {}", tracking);
-        return shipmentService.addTracking(tracking)
+        logger.info("asking for a tracking {}", tracking);
+        return shipmentService.pushTracking(tracking)
                 .map(event -> new ResponseEntity(event, HttpStatus.OK ))
                 .orElse( new ResponseEntity( new Event.Builder()
                         .setStatus(Tracking.STATUS_TRACKING.NOT_FOUND)

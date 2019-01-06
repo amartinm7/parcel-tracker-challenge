@@ -9,9 +9,9 @@ Feature: Tracking functionalities
     Then dispatch an application event reference <eventReference> and status <eventStatus>
     And print it into the console
 
-  Examples:
-    | trackingReference | trackingParcelNumber  | trackingTotalWeight | trackingStatus  | eventReference  | eventStatus           |
-    | ABCD123456        | 2                     | 100                 | DELIVERED       | ABCD123456      | CONCILLIATION_REQUEST |
+    Examples:
+      | trackingReference | trackingParcelNumber  | trackingTotalWeight | trackingStatus  | eventReference  | eventStatus           |
+      | ABCD123456        | 2                     | 100                 | DELIVERED       | ABCD123456      | CONCILLIATION_REQUEST |
 
 
   Scenario Outline: tracking NOT_NEEDED
@@ -23,9 +23,9 @@ Feature: Tracking functionalities
     Then dispatch an application event reference <eventReference> and status <eventStatus>
     And print it into the console
 
-  Examples:
-    | trackingReference | trackingParcelNumber  | trackingTotalWeight | trackingStatus  | eventReference  | eventStatus           |
-    | ABCD123456        | 2                     | 1                   | DELIVERED       | ABCD123456      | NOT_NEEDED |
+    Examples:
+      | trackingReference | trackingParcelNumber  | trackingTotalWeight | trackingStatus  | eventReference  | eventStatus           |
+      | ABCD123456        | 2                     | 1                   | DELIVERED       | ABCD123456      | NOT_NEEDED |
 
 
   Scenario Outline: tracking INCOMPLETE from DELIVERED
@@ -35,9 +35,9 @@ Feature: Tracking functionalities
     Then dispatch an application event reference <eventReference> and status <eventStatus>
     And print it into the console
 
-  Examples:
-    | trackingReference | trackingStatus  | eventReference  | eventStatus |
-    | ABCD123456        | WAITING_IN_HUB  | ABCD123456      | INCOMPLETE  |
+    Examples:
+      | trackingReference | trackingStatus  | eventReference  | eventStatus |
+      | ABCD123456        | WAITING_IN_HUB  | ABCD123456      | INCOMPLETE  |
 
 
   Scenario Outline: tracking INCOMPLETE FROM OTHER
