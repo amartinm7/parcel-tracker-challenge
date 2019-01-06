@@ -1,5 +1,7 @@
 package es.amm.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Tracking {
 
     private STATUS_TRACKING status;
@@ -78,5 +80,11 @@ public class Tracking {
         result = 31 * result + getWeight().hashCode();
         result = 31 * result + getReference().hashCode();
         return result;
+    }
+
+    @JsonIgnore
+    public boolean isAnyFieldEmptyOtherThanReference(){
+       return  (this.getParcels() == null || this.getStatus() == null || this.getWeight() == null );
+
     }
 }

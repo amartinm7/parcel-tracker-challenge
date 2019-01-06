@@ -1,5 +1,7 @@
 package es.amm.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -8,22 +10,25 @@ public class Shipment {
 
     private String reference;
     private HashSet<Parcel> parcels;
-    private Tracking tracking;
 
     public Shipment(String reference,
-                    Collection<Parcel> parcels,
-                    Tracking tracking ){
+                    Collection<Parcel> parcels){
         this.reference = reference;
         this.parcels = new LinkedHashSet<>(parcels);
-        this.tracking = tracking;
     }
 
     public Shipment() {
         super();
     }
 
+    @JsonIgnore
     public Long getTotalWeight(){
         return parcels.stream().map(parcel -> parcel.getWeight()).count();
+    }
+
+    @JsonIgnore
+    public int getTotalParcels(){
+        return parcels.size();
     }
 
     public String getReference() {
@@ -42,20 +47,11 @@ public class Shipment {
         this.parcels = parcels;
     }
 
-    public Tracking getTracking() {
-        return tracking;
-    }
-
-    public void setTracking(Tracking tracking) {
-        this.tracking = tracking;
-    }
-
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Shipment{");
         sb.append("reference='").append(reference).append('\'');
         sb.append(", parcels=").append(parcels);
-        sb.append(", tracking=").append(tracking);
         sb.append('}');
         return sb.toString();
     }
