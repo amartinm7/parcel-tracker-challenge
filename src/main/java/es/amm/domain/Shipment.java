@@ -59,4 +59,19 @@ public class Shipment {
         sb.append('}');
         return sb.toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Shipment)) return false;
+
+        Shipment shipment = (Shipment) o;
+
+        return getReference().equals(shipment.getReference());
+    }
+
+    @Override
+    public int hashCode() {
+        return getReference().hashCode();
+    }
 }
