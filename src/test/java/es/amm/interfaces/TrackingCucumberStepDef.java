@@ -1,6 +1,5 @@
 package es.amm.interfaces;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -13,9 +12,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
-
-import java.io.IOException;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Ignore
@@ -23,30 +19,23 @@ public class TrackingCucumberStepDef extends SpringBootBaseIntegrationTest {
 
     private final Logger logger = LoggerFactory.getLogger(TrackingCucumberStepDef.class);
 
-    Shipment shipment;
+    private Shipment shipment;
 
-    Tracking tracking;
+    private Tracking tracking;
 
-    Event event;
-
-    public Shipment getShipment() throws IOException {
-        final ObjectMapper objectMapper = new ObjectMapper();
-        final Shipment shipment = objectMapper.readValue(this.getClass().getResourceAsStream("./shipment.json"), Shipment.class);
-        logger.info(objectMapper.writeValueAsString(shipment));
-        return shipment;
-    }
+    private Event event;
 
     @Given("^the provided shipment$")
-    public void the_provided_shipment() throws IOException {
+    public void the_provided_shipment() throws Exception {
         // POST SHIPMENT
-        shipment = getShipment();
+        clean();
+        shipment = postShipment();
         assertThat(!StringUtils.isEmpty(shipment.getReference())).isTrue();
         tracking = new Tracking();
     }
 
     @When("^shipment reference should be equal to tracking (\\w+)$")
     public void the_shipment_reference_should_be_equal_to_tracking_reference(final String trackingReference) {
-        // PUT TRACKING
         tracking.setReference(trackingReference);
         assertThat(shipment.getReference().equals(tracking.getReference()));
     }
@@ -94,14 +83,14 @@ public class TrackingCucumberStepDef extends SpringBootBaseIntegrationTest {
     }
 
     @Then("^dispatch an application event reference (\\w+) and status (\\w+)$")
-    public void dispatch_an_application_event(final String reference, final String status) {
-        event = new Event.Builder().setReference(reference).setStatus(Tracking.STATUS_TRACKING.valueOf(status)).build();
-        assertThat(event == event).isTrue();
+    public void dispatch_an_application_event(final String reference, final String status) throws Exception {
+        event = putTracking(tracking);
+        Event expectedEvent = new Event.Builder().setReference(reference).setStatus(Tracking.STATUS_TRACKING.valueOf(status)).build();
+        assertThat(event.equals(expectedEvent)).isTrue();
     }
 
     @And("^print it into the console$")
     public void print_it_into_the_console() {
-        assertThat(event == event).isTrue();
         logger.info(event.toString());
     }
 
