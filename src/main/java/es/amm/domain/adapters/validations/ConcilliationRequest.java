@@ -16,8 +16,8 @@ public class ConcilliationRequest implements ResolveTrackingStatus {
         }
         final Shipment shipment = optionalShipment.get();
         boolean isValid = shipment.getReference().equals(tracking.getReference()) &&
-                shipment.getTotalParcels() == tracking.getParcels() &&
-                shipment.getTotalWeight() < tracking.getWeight() &&
+                shipment.getTotalParcels().equals(tracking.getParcels()) &&
+                tracking.getWeight()!=null && shipment.getTotalWeight() < tracking.getWeight() &&
                 Tracking.STATUS_TRACKING.DELIVERED.equals(tracking.getStatus());
 
         return isValid ? Optional.of(new Event.Builder()
