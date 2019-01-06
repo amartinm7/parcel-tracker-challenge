@@ -1,5 +1,6 @@
 package es.amm.intrastructure;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import es.amm.domain.Tracking;
@@ -55,11 +56,15 @@ public class Event {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("Event{");
-        sb.append("reference='").append(reference).append('\'');
-        sb.append(", status='").append(status).append('\'');
-        sb.append('}');
-        return sb.toString();
+        try {
+            return new ObjectMapper().writeValueAsString(this);
+        } catch (Exception ex){
+            final StringBuffer sb = new StringBuffer("{");
+            sb.append("\"reference\":").append(reference).append("\",");
+            sb.append("\"status\":").append(status.toString()).append("\"");
+            sb.append('}');
+            return sb.toString();
+        }
     }
 
     @Override
