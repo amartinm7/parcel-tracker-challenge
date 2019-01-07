@@ -5,8 +5,8 @@
 This is an app to test an REST API where you can send a shipment and tracking this shipment.
 
 First of all, before running the app, review that you have installed the next tools:
-- install Java 8 or higher version (https://www.java.com/en/download/help/download_options.xml)
-- install gradle (https://gradle.org/install/)
+- install Java v8 or higher version (https://www.java.com/en/download/help/download_options.xml)
+- install gradle v5 (https://gradle.org/install/)
 - optionally, install docker (https://docs.docker.com/install/#support)
 
 After that, follow the next steps specifies in the rest of the document.
