@@ -2,13 +2,18 @@
 
 # parcel-tracker-challenge
 
-Follow the instruction to run the application.
-As requirements, the java version used in this challenge is java 8. Review you have it installed before starting.
+This is an app to test an REST API where you can send a shipment and tracking this shipment.
+
+First of all, before running the app, review that you have installed the next tools:
+- install Java 8 or higher version (https://www.java.com/en/download/help/download_options.xml)
+- install gradle (https://gradle.org/install/)
+- optionally, install docker (https://docs.docker.com/install/#support)
+
+After that, follow the next steps specifies in the rest of the document.
+
 Once you have compiled and run the app, you can see the REST API in the next url:
 - http://localhost:8085/swagger-ui.html
 
-Tests provided as use case are implemented in the test folder and you can see the report in the target and build folders. 
-More details in the other sections of this document.
 
 ## ![springboot](./_media/icons/springboot.png) run springboot app
 To start, install the gradle wrapper is you didn't do it previously and boot the app: 
@@ -22,8 +27,8 @@ or run the application using the java command line, using the fat jar:
 ```bash
 java -jar -Dspring.profiles.active=dev build/libs/parcel-tracker-rest-service-0.1.0.jar
 ```
-you can specify the profile using the -Dspring.profiles.active parameter. If you don't specify any, by default is 'dev' in our case.
-
+You can specify the profile using the -Dspring.profiles.active parameter. If you don't specify any, by default is 'dev' in our case.
+If you have installed another Java higher version different than 8, you have to specify the the -source and -target command flags as the 8 version.   
 
 ## ![docker](./_media/icons/docker.png) Dockerize the app
 From the project root folder exec the commands to create a docker image and run it:
