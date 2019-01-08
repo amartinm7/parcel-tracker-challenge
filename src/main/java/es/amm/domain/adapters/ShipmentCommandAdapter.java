@@ -25,7 +25,7 @@ public class ShipmentCommandAdapter implements ShipmentCommandPort {
 
     @Override
     public Optional<Shipment> save (Shipment shipment){
-        // TODO: if the shipment exists return empty, to finally return a BAD_REQUEST
+        // if the shipment exists return empty, to finally return a BAD_REQUEST
         return (storeShipment(shipment)) ? Optional.of(shipment) : Optional.empty();
     }
 
