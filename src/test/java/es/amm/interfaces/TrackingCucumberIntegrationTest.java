@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src/test/resources/features/tracking.feature",
-        plugin = {"pretty", "html:target/cucumber"})
+        plugin = {"pretty", "html:build/cucumber"})
 public class TrackingCucumberIntegrationTest {
     // RUN THIS CLASS TO DO THE BDD TESTS
 }
