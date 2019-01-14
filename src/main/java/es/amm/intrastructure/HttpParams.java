@@ -23,10 +23,4 @@ public class HttpParams {
             "/swagger-ui.html",
             "/webjars/**"};
 
-    public static final String X_PASSWORD                   = "X-Password";
-    public static final String USER_NAME                    = "username";
-    public static final String USER_NAME_FROM               = "usernameFrom";
-    public static final String USER_NAME_TO                 = "usernameTo";
-    public static final String PASSWORD                     = "password";
-
 }
