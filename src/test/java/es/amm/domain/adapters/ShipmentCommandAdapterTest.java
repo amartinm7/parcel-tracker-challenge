@@ -82,7 +82,7 @@ public class ShipmentCommandAdapterTest {
         // when
         final Optional<Shipment> optionalShipmentSecond =  shipmentCommandport.save(shipment);
         // then
-        assertFalse(optionalShipmentSecond.isPresent(),"you can save two times the same shipment");
+        assertFalse(optionalShipmentSecond.isPresent(),"you can't save two times the same shipment");
     }
 
     @Test
