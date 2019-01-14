@@ -72,7 +72,7 @@ public class TrackingCucumberStepDef extends SpringBootBaseIntegrationTest {
 
     @When("^any other tracking field is null$")
     public void any_other_tracking_field_is_null() {
-        boolean isAnyEmpty = tracking.getStatus() == null || tracking.getWeight() == null || tracking.getParcels() == null || StringUtils.isEmpty(tracking.getReference());
+        boolean isAnyEmpty = tracking.isAnyFieldEmptyOtherThanReference();
         assertThat(isAnyEmpty).isTrue();
     }
 
