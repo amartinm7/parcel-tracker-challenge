@@ -22,10 +22,14 @@ public class ShipmentCommandAdapter implements ShipmentCommandPort {
     }
 
     private boolean storeShipment(Shipment shipment){ return repositoryPort.save(shipment); }
+    private boolean existsShipment(String reference){ return repositoryPort.exists(reference); }
 
     @Override
     public Optional<Shipment> save (Shipment shipment){
-        // TODO: if the shipment exists return empty, to finally return a BAD_REQUEST
+        // if the shipment exists return empty, to finally return a BAD_REQUEST
+        if (shipment != null && existsShipment(shipment.getReference())){
+            return Optional.empty();
+        }
         return (storeShipment(shipment)) ? Optional.of(shipment) : Optional.empty();
     }
 
