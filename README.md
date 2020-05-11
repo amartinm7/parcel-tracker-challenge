@@ -1,3 +1,5 @@
+[![BCH compliance](https://bettercodehub.com/edge/badge/amartinm7/parcel-tracker-challenge?branch=master)](https://bettercodehub.com/)
+
 ![packlink](./_media/packlink.png)
 
 # parcel-tracker-challenge
